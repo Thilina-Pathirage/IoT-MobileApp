@@ -4,6 +4,8 @@ import 'package:iot_mobile_app/UI/content.dart';
 import 'package:http/http.dart' as http;
 
 class Login extends StatefulWidget {
+  const Login({Key? key}) : super(key: key);
+
   @override
   _LoginState createState() => _LoginState();
 }
@@ -27,7 +29,7 @@ class _LoginState extends State<Login> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 3.0, horizontal: 15.0),
                 child: TextField(
-                  decoration: InputDecoration(hintText: "Email"),
+                  decoration: const InputDecoration(hintText: "Email"),
                   controller: emailTextEditingContoller,
                   onChanged: (value) {
                     setState(() {
@@ -41,7 +43,7 @@ class _LoginState extends State<Login> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 3.0, horizontal: 15.0),
                 child: TextField(
-                  decoration: InputDecoration(hintText: "Password"),
+                  decoration: const InputDecoration(hintText: "Password"),
                   controller: passwordTextEditingContoller,
                   obscureText: true,
                   onChanged: (value) {
@@ -97,13 +99,13 @@ class _LoginState extends State<Login> {
     print(response.statusCode);
 
     if (response.statusCode == 200) {
-      print(response.body);
+      // print(response.body);
       var data = jsonDecode(response.body);
-      print(data);
+      // print(data);
       ScaffoldMessenger.of(context).removeCurrentSnackBar();
 
       if (response.body != '[]') {
-        Navigator.push(
+        Navigator.pushReplacement(
           context,
           MaterialPageRoute(
             builder: (context) => Content(data),
